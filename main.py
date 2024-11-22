@@ -35,7 +35,7 @@ def headlines_with_word(main_table):
     headline_table = []
     headline_word = input("please input a word to find in headlines: ").strip()
     for row in main_table:
-        if any(headline_word.lower() in str(cell).lower() for cell in row):
+        if (headline_word.lower() in str(cell).lower() for cell in row):
             headline_table.append(row)
     output_file_name = input("enter a file to write to: ").strip()
     try:
@@ -57,14 +57,14 @@ def long_or_short_headline(main_table):
     long_headline = ""
     short_headline = ""
     for row in main_table:
-        headline = row[0]
-        row_length = len(headline)
-        if row_length > longest:
-            longest = row_length
-            long_headline = headline
-        if row_length < shortest:
-            shortest = row_length
-            short_headline = headline
+        for headline in row:
+            row_length = len(headline)
+            if row_length > longest:
+                longest = row_length
+                long_headline = headline
+            if row_length < shortest:
+                shortest = row_length
+                short_headline = headline
     print(f"the longest headline is: \"{long_headline}\" (Length: {longest})")
     print(f"the shortest headline is: \"{short_headline}\" (Length: {shortest})")
 
@@ -86,9 +86,10 @@ def word_count (main_table):
 def avg_headline_characters(main_table):
     total_length = 0
     for row in main_table:
-        row_length = len(row[0])
-        total_length += row_length
-    average_characters = total_length / len(main_table) if len(main_table) > 0 else 0
+        for headline in row:
+            row_length = len(headline)
+            total_length += row_length
+    average_characters = total_length / sum(len(row) for row in main_table) if len(main_table) > 0 else 0
     print(f"The average number of characters in all the headlines in this file are: {average_characters:.2f}")
 
 # name: error_check_file_name

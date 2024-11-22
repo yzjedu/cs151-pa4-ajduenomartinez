@@ -75,9 +75,9 @@ def word_count (main_table):
     count = 0
     search_word = input("enter a word you would like to search for: ").strip()
     for row in main_table:
-        title = row[0]
-        if search_word.lower() in title.lower():
-            count += 1
+        for title in row:
+            if search_word.lower() in title.lower():
+                count += 1
     print(f"The word '{search_word}' appears in headlines {count} times.")
 
 # name: avg_headline_characters

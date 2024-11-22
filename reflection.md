@@ -14,7 +14,7 @@ First I created an algorithm, and then I was able to create the code
 key concepts explored in this PA were the usage of reading and writing to files, creating multiple functions, and working 
 with lists and tables
 #### Did your results match what you expected to get?
-results matched what I expected to get, so yes
+results matched what I expected to get, so id say yes
 
 ### Reflection:
 #### What challenges did you encounter?
